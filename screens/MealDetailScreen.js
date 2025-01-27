@@ -1,19 +1,35 @@
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import { FavouritesContext } from "../store/context/favourites-context";
+import { useDispatch, useSelector } from "react-redux";
 
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
 import IconButton from "../components/IconButton";
+import { addFavourite, removeFavourite } from "../store/redux/favourites";
 
 export default function MealDetailScreen({ route, navigation }) {
+  const favouritemealsCtx = useContext(FavouritesContext);
+
+  const favouriteMealIds = useSelector((state) => state.favouriteMeals.ids);
+  const dispatch = useDispatch();
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   const { duration, complexity, affordability } = selectedMeal;
 
-  function headerButtonPressHandler() {
-    console.log("Button clicked");
+  // const mealIsFavourite = favouritemealsCtx.ids.includes(mealId);
+  const mealIsFavourite = favouriteMealIds.includes(mealId);
+
+  function changeFavouriteStatusHandler() {
+    if (mealIsFavourite) {
+      // favouritemealsCtx.removeFavourite(mealId);
+      dispatch(removeFavourite({ id: mealId }));
+    } else {
+      // favouritemealsCtx.addFavourite(mealId);
+      dispatch(addFavourite({ id: mealId }));
+    }
   }
 
   useLayoutEffect(() => {
@@ -21,14 +37,14 @@ export default function MealDetailScreen({ route, navigation }) {
       headerRight: () => {
         return (
           <IconButton
-            onPress={headerButtonPressHandler}
-            icon="star"
+            onPress={changeFavouriteStatusHandler}
+            icon={mealIsFavourite ? "star" : "star-outline"}
             color="white"
           />
         );
       },
     });
-  }, [navigation, headerButtonPressHandler]);
+  }, [navigation, changeFavouriteStatusHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
