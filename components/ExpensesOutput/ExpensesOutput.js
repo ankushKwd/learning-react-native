@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary700,
   },
   infoText: {
-    color: " white",
+    color: "white",
     fontSize: 16,
     textAlign: "center",
     marginTop: 32,
