@@ -17,6 +17,8 @@ import FavouriteScreen from "./screens/FavouriteScreen";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
+//ReactNative@2025
+
 function DrawerNavigator() {
   return (
     <Drawer.Navigator

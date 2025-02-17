@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "RNCourse",
+    "name": "My recipe Book",
     "slug": "RNCourse",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "backgroundColor":"#24180f",
+    "backgroundColor": "#24180f",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -14,16 +14,24 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anktrivision.RNCourse"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "466dd205-82b8-4bf0-86a6-39b068b0abe7"
+      }
     }
   }
 }
